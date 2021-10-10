@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour
 {
 
     CharacterController controller;
-    public float speed = 1f;
+    public float speed = 10f;
 
     Vector3 velocity;
     public float jumpHeight = 2f;

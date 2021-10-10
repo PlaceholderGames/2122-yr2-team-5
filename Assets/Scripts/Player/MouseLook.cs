@@ -10,7 +10,6 @@ public class MouseLook : MonoBehaviour
     float xRotation = 0;
 
     // Interactivity
-    Ray ray;
     RaycastHit hit;
     GameObject lookingAt;
 
@@ -35,7 +34,7 @@ public class MouseLook : MonoBehaviour
         playerBody.Rotate(Vector3.up, mouseX);
 
         // Raycast
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, 2f, (1 << 7))) {
             lookingAt = hit.transform.gameObject;
             Debug.Log("Hit object! - " + lookingAt.name);
