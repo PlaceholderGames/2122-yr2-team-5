@@ -7,6 +7,7 @@ using UnityEngine;
 public class ObjectController : MonoBehaviour
 {
     public int objectsToFind = 10;
+    int objectsFound;
     
     private List<GameObject> objects;
 
@@ -19,26 +20,26 @@ public class ObjectController : MonoBehaviour
         {
             GameObject[] gameobjects = GameObject.FindGameObjectsWithTag("FindMe");
             GameObject randGameObject = gameobjects[Random.Range(0, gameobjects.Length)];
-            objects.Add(randGameObject);
+            if(!objects.Contains(randGameObject)) objects.Add(randGameObject);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    public List<GameObject> GetObjects()
+    public bool collectedAll()
     {
-        return this.objects;
+        return this.getCollectedObjects() >= this.objects.Count;
     }
 
-    public void RemoveObject(GameObject obj)
+    public int getCollectedObjects() {
+        return objectsFound;
+    }
+
+    public void collect(GameObject go)
     {
-        if(this.objects.Contains(obj))
-        {
-            this.objects.Remove(obj);
-        }
+        objectsFound++;
     }
 }
