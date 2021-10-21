@@ -24,6 +24,8 @@ public class Controller : MonoBehaviour
     public LayerMask groundLayer;
     bool isGrounded;
 
+    public Vector3 lastPosition;
+
 
     void Start()
     {
@@ -35,6 +37,8 @@ public class Controller : MonoBehaviour
     {
         if (!GameObject.Find("GameManager").GetComponent<GameManager>().isGameOver())
         {
+            lastPosition = transform.position;
+
             isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
             if (isGrounded & velocity.y < 0)
             {
@@ -46,7 +50,6 @@ public class Controller : MonoBehaviour
 
             Vector3 move = (transform.right * x) + (transform.forward * z);
             controller.Move(move * speed * Time.deltaTime);
-
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {

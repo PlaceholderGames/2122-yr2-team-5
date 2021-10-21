@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     bool gameOver;
 
+    Controller playerController;
     ObjectController objectController;
 
     // Start is called before the first frame update
@@ -51,8 +52,8 @@ public class GameManager : MonoBehaviour
         TimerUI = GameUI.Find("Timer");
         CollectUI = GameUI.Find("Collect");
 
-
-        CollectUI.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + GameObject.Find("Player").GetComponent<Controller>().interactKey + " to collect";
+        playerController = GameObject.Find("Player").GetComponent<Controller>();
+        CollectUI.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
 
         GameOverUI.gameObject.SetActive(gameOver);
         GameUI.gameObject.SetActive(!gameOver);
@@ -61,7 +62,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (playerController.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
+        {
+            timerInSeconds -= GetComponent<TrafficLightController>().playerMoveTime * Time.deltaTime;
+        }
 
         // Timer system
         if (timerInSeconds > 0)

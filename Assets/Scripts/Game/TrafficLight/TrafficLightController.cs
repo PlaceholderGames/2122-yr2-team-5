@@ -14,6 +14,9 @@ public class TrafficLightController : MonoBehaviour
     public float stopTime = 5f;
     public float goTime = 0f;
 
+    [Tooltip("Seconds to remove if player moves")]
+    public float playerMoveTime = 10;
+
     List<TrafficLightNode> lights = new List<TrafficLightNode>();
 
     // Start is called before the first frame update
