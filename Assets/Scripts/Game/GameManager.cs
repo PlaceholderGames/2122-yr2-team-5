@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
         {
             HighlightEffect highlight = findable[i].AddComponent<HighlightEffect>();
             HighlightTrigger trigger = findable[i].AddComponent<HighlightTrigger>();
+            if(!findable[i].GetComponent<ObjectProperty>()) {
+                findable[i].AddComponent<ObjectProperty>();
+            }
 
             highlight.ProfileLoad(highlightProfile);
         }

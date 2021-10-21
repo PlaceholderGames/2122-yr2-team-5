@@ -41,8 +41,7 @@ public class ObjectCollector : MonoBehaviour
                 gameManager.showCollectUI(true);
                 if(Input.GetKeyDown(playerController.interactKey))
                 {
-                    objectController.collect(hit.transform.gameObject);
-                    hit.transform.gameObject.SetActive(false);
+                    hit.transform.GetComponent<ObjectProperty>().OnCollect();
                 }
             }
         } else {
