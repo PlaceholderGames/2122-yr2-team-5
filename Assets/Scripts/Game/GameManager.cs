@@ -62,22 +62,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerController.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
+        if (!gameOver)
         {
-            timerInSeconds -= GetComponent<TrafficLightController>().playerMoveTime * Time.deltaTime;
-        }
-
-        // Timer system
-        if (timerInSeconds > 0)
-        {
-            if (!objectController.collectedAll())
+            if (playerController.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
             {
-                timerInSeconds -= Time.deltaTime;
+                timerInSeconds -= GetComponent<TrafficLightController>().playerMoveTime * Time.deltaTime;
             }
-        }
-        else
-        {
-            timerInSeconds = 0;
+
+            // Timer system
+            if (timerInSeconds > 0)
+            {
+                if (!objectController.collectedAll())
+                {
+                    timerInSeconds -= Time.deltaTime;
+                }
+            }
+            else
+            {
+                timerInSeconds = 0;
+            }
         }
 
         if(timerInSeconds <= 0 || objectController.collectedAll())

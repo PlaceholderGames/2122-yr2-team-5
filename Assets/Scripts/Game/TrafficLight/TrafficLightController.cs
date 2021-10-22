@@ -19,6 +19,8 @@ public class TrafficLightController : MonoBehaviour
 
     List<TrafficLightNode> lights = new List<TrafficLightNode>();
 
+    GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,31 +31,42 @@ public class TrafficLightController : MonoBehaviour
             else trafficLights[i].AddComponent<TrafficLightNode>();
             lights.Add(trafficLights[i].GetComponent<TrafficLightNode>());
         }
+
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Timer system
-        if (timerInSeconds > 0)
+        if (!gm.isGameOver())
         {
-            timerInSeconds -= Time.deltaTime;
-        }
-        else
+            // Timer system
+            if (timerInSeconds > 0)
+            {
+                timerInSeconds -= Time.deltaTime;
+            }
+            else
+            {
+                timerInSeconds = 20;
+            }
+
+            if (timerInSeconds > warningTime)
+            {
+                currentState = TrafficLightState.GO;
+            }
+            else if (timerInSeconds > stopTime && timerInSeconds <= warningTime)
+            {
+                currentState = TrafficLightState.WARNING;
+            }
+            else if (timerInSeconds > goTime && timerInSeconds <= stopTime)
+            {
+                currentState = TrafficLightState.STOP;
+            }
+        } else
         {
-            timerInSeconds = 20;
+            currentState = TrafficLightState.FINISHED;
         }
 
-        if(timerInSeconds > warningTime)
-        {
-            currentState = TrafficLightState.GO;
-        } else if(timerInSeconds > stopTime && timerInSeconds <= warningTime)
-        {
-            currentState = TrafficLightState.WARNING;
-        } else if(timerInSeconds > goTime && timerInSeconds <= stopTime)
-        {
-            currentState = TrafficLightState.STOP;
-        }
     }
 }
 
@@ -61,5 +74,6 @@ public enum TrafficLightState
 {
     STOP,
     WARNING,
-    GO
+    GO,
+    FINISHED
 }

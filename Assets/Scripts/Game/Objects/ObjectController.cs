@@ -8,8 +8,11 @@ public class ObjectController : MonoBehaviour
 {
     public int objectsToFind = 10;
     int objectsFound;
+
+    public GameObject textObject;
     
-    private List<GameObject> objects;
+    public List<GameObject> objects;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +23,15 @@ public class ObjectController : MonoBehaviour
         {
             GameObject[] gameobjects = GameObject.FindGameObjectsWithTag("FindMe");
             GameObject randGameObject = gameobjects[Random.Range(0, gameobjects.Length)];
-            if(!objects.Contains(randGameObject)) objects.Add(randGameObject);
+            if (!objects.Contains(randGameObject))
+            {
+                GameObject _textObject = Instantiate(textObject, GameObject.Find("ObjectList").transform);
+                _textObject.name = randGameObject.name + "_text";
+                TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
+                textComponent.text = randGameObject.name;
+                _textObject.transform.localScale = Vector3.one;
+                objects.Add(randGameObject);
+            }
         }
     }
 
@@ -38,7 +49,7 @@ public class ObjectController : MonoBehaviour
         return objectsFound;
     }
 
-    public void collect(GameObject go)
+    public void collect()
     {
         objectsFound++;
     }

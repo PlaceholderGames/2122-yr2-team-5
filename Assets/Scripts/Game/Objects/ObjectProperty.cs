@@ -17,7 +17,9 @@ public class ObjectProperty : MonoBehaviour
     public void OnCollect()
     {
         transform.gameObject.SetActive(false);
-        objectController.collect(transform.gameObject);
+        objectController.collect();
+        GameObject objectListUI = GameObject.Find("ObjectList");
+        objectListUI.transform.Find(transform.name + "_text").gameObject.SetActive(false);
         gm.timerInSeconds += 30;
     }
 }

@@ -14,7 +14,6 @@ public class ObjectCollector : MonoBehaviour
 
     // Interactivity
     RaycastHit hit;
-    public GameObject lookingAt;
     public string objectTag;
 
     // Start is called before the first frame update
