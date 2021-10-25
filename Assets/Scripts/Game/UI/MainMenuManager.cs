@@ -5,7 +5,7 @@ using UnityEditor;
 
 using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class MainMenuManager : UIManager
 {
     public GameObject creditScreen;
     public GameObject mainMenuScreen;
@@ -25,23 +25,12 @@ public class UIManager : MonoBehaviour
 
     public void PlayGame()
     {
+        DontDestroyOnLoad(GameObject.Find("GameSettings"));
         SceneManager.LoadScene("map");
     }
 
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void ShowCredits()
-    {
-        mainMenuScreen.SetActive(false);
-        creditScreen.SetActive(true);
-    }
-
-    public void showMainMenu()
-    {
-        mainMenuScreen.SetActive(true);
-        creditScreen.SetActive(false);
     }
 }

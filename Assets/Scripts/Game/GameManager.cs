@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     public Transform GameUI;
     public Transform GameOverUI;
+    public Transform PauseUI;
+    public Transform SettingsUI;
     Transform TimerUI;
     Transform CollectUI;
 
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     public float raycastDistance = 4f;
 
     bool gameOver;
+    bool paused;
 
     Controller playerController;
     ObjectController objectController;
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameOver = false;
+        paused = false;
 
         GameObject[] findable = GameObject.FindGameObjectsWithTag("FindMe");
         for (int i = 0; i < findable.Length; i++)
@@ -55,14 +59,24 @@ public class GameManager : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<Controller>();
         CollectUI.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
 
-        GameOverUI.gameObject.SetActive(gameOver);
-        GameUI.gameObject.SetActive(!gameOver);
+        GameUI.gameObject.SetActive(true);
+        GameOverUI.gameObject.SetActive(false);
+        PauseUI.gameObject.SetActive(false);
+        PauseUI.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!gameOver)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            paused = !paused;
+        }
+
+        if (paused) Time.timeScale = 0;
+        else Time.timeScale = 1;
+
+        if (!gameOver || paused)
         {
             if (playerController.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
             {
@@ -90,16 +104,30 @@ public class GameManager : MonoBehaviour
         }
 
         displayTime(timerInSeconds);
+        showPauseScreen(paused);
     }
+
 
     public void showCollectUI(bool show)
     {
         CollectUI.gameObject.SetActive(show);
     }
 
+    public void showPauseScreen(bool show)
+    {
+        showCollectUI(!show);
+        GameUI.gameObject.SetActive(!show);
+        PauseUI.gameObject.SetActive(show);
+    }
+
     public bool isGameOver()
     {
         return this.gameOver;
+    }
+
+    public void resume()
+    {
+        paused = false;
     }
 
     public void playAgain()
@@ -110,6 +138,11 @@ public class GameManager : MonoBehaviour
     public void backToMainMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public bool isPaused()
+    {
+        return paused;
     }
 
     void displayGameOver(bool collectedAll, float timeLeft)
@@ -150,4 +183,5 @@ public class GameManager : MonoBehaviour
 
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
+
 }
