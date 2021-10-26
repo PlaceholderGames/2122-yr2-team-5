@@ -7,26 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuManager : UIManager
 {
-    public GameObject creditScreen;
-    public GameObject mainMenuScreen;
 
     // Start is called before the first frame update
     void Start()
     {
-        mainMenuScreen.SetActive(true);
-        creditScreen.SetActive(false);
-    }
+        Transform canvas = GameObject.Find("Canvas").transform;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        hideScreen(canvas.Find("Settings").gameObject);
+        showScreen(canvas.Find("MainMenu").gameObject);
     }
 
     public void PlayGame()
     {
-        DontDestroyOnLoad(GameObject.Find("GameSettings"));
-        SceneManager.LoadScene("map");
+        SceneManager.LoadScene("map v2");
     }
 
     public void QuitGame()

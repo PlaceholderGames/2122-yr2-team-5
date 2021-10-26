@@ -9,8 +9,10 @@ public class MouseLook : MonoBehaviour
     Transform playerBody;
     float xRotation = 0;
 
-    Settings gameSettings;
+    Settings gs;
     GameManager gm;
+
+    bool invertLookX = false, invertLookY = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,18 +20,21 @@ public class MouseLook : MonoBehaviour
         playerBody = transform.parent;
         Cursor.lockState = CursorLockMode.Locked;
 
-        if(GameObject.Find("GameSettings"))
-        {
-            gameSettings = GameObject.Find("GameSettings").GetComponent<Settings>();
-        }
-
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        GameObject gameManager = GameObject.Find("GameManager");
+        gm = gameManager.GetComponent<GameManager>();
     }
 
     // Update is called once per frame
+    bool intToBool(int i)
+    {
+        return i == 1 ? true : false;
+    }
+
     void Update()
     {
-        mouseSensitivity = gameSettings ? gameSettings.mouseSensitivity : 100;
+        invertLookX = intToBool(PlayerPrefs.GetInt("mouse.invert.x"));
+        invertLookY = intToBool(PlayerPrefs.GetInt("mouse.invert.y"));
+        mouseSensitivity = PlayerPrefs.GetFloat("mouse.sensitivity");
 
         Cursor.visible = gm.isPaused();
         if(gm.isPaused()) Cursor.lockState = CursorLockMode.None;
@@ -41,6 +46,9 @@ public class MouseLook : MonoBehaviour
             // Mouse Look
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+            mouseX = invertLookX ? -mouseX : mouseX;
+            mouseY = invertLookY ? -mouseY : mouseY;
 
             xRotation -= mouseY;
             xRotation = Mathf.Clamp(xRotation, -90, 90);

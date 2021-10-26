@@ -62,22 +62,22 @@ public class GameManager : MonoBehaviour
         GameUI.gameObject.SetActive(true);
         GameOverUI.gameObject.SetActive(false);
         PauseUI.gameObject.SetActive(false);
-        PauseUI.gameObject.SetActive(false);
+        SettingsUI.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            paused = !paused;
-        }
-
         if (paused) Time.timeScale = 0;
         else Time.timeScale = 1;
 
-        if (!gameOver || paused)
+        if (!gameOver)
         {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                paused = !paused;
+            }
+
             if (playerController.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
             {
                 timerInSeconds -= GetComponent<TrafficLightController>().playerMoveTime * Time.deltaTime;
@@ -166,6 +166,7 @@ public class GameManager : MonoBehaviour
         GameUI.gameObject.SetActive(false);
         GameOverUI.gameObject.SetActive(true);
 
+        Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
 

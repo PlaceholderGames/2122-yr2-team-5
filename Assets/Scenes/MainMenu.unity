@@ -1491,8 +1491,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 858491428}
+  - component: {fileID: 858491429}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: PlayerSettings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1512,6 +1513,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &858491429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 858491427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1b56e38e5c7b249b8a3e0c1a3be76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 100
+  invertedMouse: 0000
 --- !u!1 &881354819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,6 +1761,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 1481317939}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1481317941}
+        m_TargetAssemblyTypeName: SettingsManager, Assembly-CSharp
+        m_MethodName: onBackClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2636,51 +2663,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298953713}
   m_CullTransparentMesh: 1
---- !u!1 &1337316616
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1337316618}
-  - component: {fileID: 1337316617}
-  m_Layer: 0
-  m_Name: GameSettings
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1337316617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337316616}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1b56e38e5c7b249b8a3e0c1a3be76b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mouseSensitivitySlider: {fileID: 175157350}
-  mouseSensitivity: 0
---- !u!4 &1337316618
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1337316616}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342825823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2935,7 +2917,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 573890237}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.4863013
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3448,6 +3430,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dcb7003dc733844981ffe5df5aec83d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  settingsManager: {fileID: 858491429}
+  mouseSensitivity: {fileID: 1987798497}
+  mouseInvert:
+  - {fileID: 1427670786}
+  - {fileID: 583908853}
 --- !u!1 &1528442735
 GameObject:
   m_ObjectHideFlags: 0
@@ -3505,7 +3492,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Back
+  m_text: Save
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4416,8 +4403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a59619f28a1eda74ca6e3e5377ab71c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  creditScreen: {fileID: 1481317939}
-  mainMenuScreen: {fileID: 1007864851}
 --- !u!114 &1955409592
 MonoBehaviour:
   m_ObjectHideFlags: 0
