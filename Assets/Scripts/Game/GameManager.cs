@@ -116,6 +116,7 @@ public class GameManager : MonoBehaviour
         if(timerInSeconds <= 0 || objectController.collectedAll())
         {
             gameOver = true;
+            if(timerInSeconds <= 0) timerInSeconds = 0;
             displayGameOver(objectController.collectedAll(), timerInSeconds);
         }
 
