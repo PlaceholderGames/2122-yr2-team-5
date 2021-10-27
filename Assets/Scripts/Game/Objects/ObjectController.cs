@@ -28,16 +28,12 @@ public class ObjectController : MonoBehaviour
                 GameObject _textObject = Instantiate(textObject, GameObject.Find("ObjectList").transform);
                 _textObject.name = randGameObject.name + "_text";
                 TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
-                textComponent.text = randGameObject.name;
+
+                textComponent.text = randGameObject.name + " (" + randGameObject.transform.parent.name + ")";
                 _textObject.transform.localScale = Vector3.one;
                 objects.Add(randGameObject);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public bool collectedAll()

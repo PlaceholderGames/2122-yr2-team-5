@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
     [Header("Timer")]
     public float timerInSeconds = (5 * 60);
 
-
     [Header("UI")]
     public Transform GameUI;
     public Transform GameOverUI;
@@ -23,12 +22,14 @@ public class GameManager : MonoBehaviour
     public Transform SettingsUI;
     Transform TimerUI;
     Transform CollectUI;
+    Transform CollectablesUI;
 
     [Header("Interaction Distance")]
     public float raycastDistance = 4f;
 
     bool gameOver;
     bool paused;
+    bool showCollectables;
 
     Controller playerController;
     ObjectController objectController;
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
     {
         gameOver = false;
         paused = false;
+        showCollectables = true;
 
         GameObject[] findable = GameObject.FindGameObjectsWithTag("FindMe");
         for (int i = 0; i < findable.Length; i++)
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
 
         TimerUI = GameUI.Find("Timer");
         CollectUI = GameUI.Find("Collect");
+        CollectablesUI = GameUI.Find("Objects");
 
         playerController = GameObject.Find("Player").GetComponent<Controller>();
         CollectUI.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
@@ -78,6 +81,11 @@ public class GameManager : MonoBehaviour
                 paused = !paused;
             }
 
+            if(Input.GetKeyDown(KeyCode.Tab))
+            {
+                showCollectables = !showCollectables;
+            }
+
             if (playerController.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
             {
                 timerInSeconds -= GetComponent<TrafficLightController>().playerMoveTime * Time.deltaTime;
@@ -97,6 +105,8 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        CollectablesUI.gameObject.SetActive(showCollectables);
+
         if(timerInSeconds <= 0 || objectController.collectedAll())
         {
             gameOver = true;
@@ -106,6 +116,8 @@ public class GameManager : MonoBehaviour
         displayTime(timerInSeconds);
         showPauseScreen(paused);
     }
+
+
 
 
     public void showCollectUI(bool show)
@@ -130,14 +142,14 @@ public class GameManager : MonoBehaviour
         paused = false;
     }
 
-    public void playAgain()
+    public void loadScene(Scene scene)
     {
-        SceneManager.LoadScene("map");
+        SceneManager.LoadScene(scene.name);
     }
 
-    public void backToMainMenu()
+    public void loadScene(string sceneName)
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(sceneName);
     }
 
     public bool isPaused()
@@ -161,13 +173,8 @@ public class GameManager : MonoBehaviour
 
         itemText.GetComponent<TextMeshProUGUI>().text = "Objects collected: " + objectController.getCollectedObjects();
 
-        // Add information
-
         GameUI.gameObject.SetActive(false);
         GameOverUI.gameObject.SetActive(true);
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     void displayTime(float time)

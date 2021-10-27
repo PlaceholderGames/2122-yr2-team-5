@@ -49,7 +49,14 @@ public class Controller : MonoBehaviour
             float z = Input.GetAxis("Vertical");
 
             Vector3 move = (transform.right * x) + (transform.forward * z);
-            controller.Move(move * speed * Time.deltaTime);
+
+            if (Input.GetButton("Sprint"))
+            {
+                controller.Move(move * (speed * 2) * Time.deltaTime);
+            } else
+            {
+                controller.Move(move * speed * Time.deltaTime);
+            }
 
             if (Input.GetButtonDown("Jump") && isGrounded)
             {
