@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ObjectController : MonoBehaviour
 {
@@ -30,6 +31,10 @@ public class ObjectController : MonoBehaviour
                 TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
 
                 textComponent.text = randGameObject.name + " (" + randGameObject.transform.parent.name + ")";
+
+                LayoutElement layoutElement = _textObject.AddComponent<LayoutElement>();
+                layoutElement.minHeight = 32;
+                layoutElement.preferredHeight = 32;
                 _textObject.transform.localScale = Vector3.one;
                 objects.Add(randGameObject);
             }

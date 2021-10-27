@@ -32,9 +32,13 @@ public class SettingsManager : UIManager
         onBackClicked();
     }
 
-    // Update is called once per frame
-    void Update()
-    {   
+    public void resetValues()
+    {
+        mouseSensitivity.transform.Find("Slider").GetComponent<Slider>().value = settingsManager.mouseSensitivity;
+        for (int i = 0; i < mouseInvert.Count; i++)
+        {
+            mouseInvert[i].isOn = settingsManager.invertedMouse[i];
+        }
     }
 
     public void onBackClicked()

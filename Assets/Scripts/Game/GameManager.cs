@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Transform GameOverUI;
     public Transform PauseUI;
     public Transform SettingsUI;
+    public Transform LoadingUI;
     Transform TimerUI;
     Transform CollectUI;
     Transform CollectablesUI;
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         GameOverUI.gameObject.SetActive(false);
         PauseUI.gameObject.SetActive(false);
         SettingsUI.gameObject.SetActive(false);
+        LoadingUI.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -78,6 +80,11 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 paused = !paused;
+                if (!paused && (SettingsUI.gameObject.activeInHierarchy || SettingsUI.gameObject.activeSelf))
+                {
+                    SettingsUI.GetComponent<SettingsManager>().resetValues();
+                    SettingsUI.gameObject.SetActive(paused);
+                }
             }
 
             if(Input.GetKeyDown(KeyCode.Tab))
