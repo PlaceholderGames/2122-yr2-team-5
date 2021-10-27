@@ -26,6 +26,8 @@ public class Controller : MonoBehaviour
 
     public Vector3 lastPosition;
 
+    public string currentRoom = "None";
+
 
     void Start()
     {

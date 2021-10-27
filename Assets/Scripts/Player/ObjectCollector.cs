@@ -35,9 +35,10 @@ public class ObjectCollector : MonoBehaviour
         // Raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, gameManager.raycastDistance, (1 << 7))) {
-            if(hit.transform.gameObject.tag == objectTag)
+
+            gameManager.showCollectUI(hit.transform.gameObject.tag == objectTag);
+            if (hit.transform.gameObject.tag == objectTag)
             {
-                gameManager.showCollectUI(true);
                 if(Input.GetKeyDown(playerController.interactKey))
                 {
                     hit.transform.GetComponent<ObjectProperty>().OnCollect();

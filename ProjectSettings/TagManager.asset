@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FindMe
   - trafficLightNode
+  - room
   layers:
   - Default
   - TransparentFX

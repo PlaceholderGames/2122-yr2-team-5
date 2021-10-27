@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     Transform TimerUI;
     Transform CollectUI;
     Transform CollectablesUI;
+    Transform RoomUI;
 
     [Header("Interaction Distance")]
     public float raycastDistance = 4f;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
         TimerUI = GameUI.Find("Timer");
         CollectUI = GameUI.Find("Collect");
         CollectablesUI = GameUI.Find("Objects");
+        RoomUI = GameUI.Find("Room");
 
         playerController = GameObject.Find("Player").GetComponent<Controller>();
         CollectUI.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
@@ -115,6 +117,7 @@ public class GameManager : MonoBehaviour
 
         displayTime(timerInSeconds);
         showPauseScreen(paused);
+        showRoom(playerController.currentRoom);
     }
 
 
@@ -130,6 +133,12 @@ public class GameManager : MonoBehaviour
         showCollectUI(!show);
         GameUI.gameObject.SetActive(!show);
         PauseUI.gameObject.SetActive(show);
+    }
+
+    void showRoom(string roomName)
+    {
+        RoomUI.gameObject.SetActive(!(roomName == "None"));
+        RoomUI.Find("Value").GetComponent<TMPro.TextMeshProUGUI>().text = roomName;
     }
 
     public bool isGameOver()
