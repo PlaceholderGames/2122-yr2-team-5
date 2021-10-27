@@ -42,19 +42,16 @@ public class GameManager : MonoBehaviour
         paused = false;
         showCollectables = true;
 
-        GameObject[] findable = GameObject.FindGameObjectsWithTag("FindMe");
-        for (int i = 0; i < findable.Length; i++)
+        objectController = GetComponent<ObjectController>();
+
+        for (int i = 0; i < objectController.objects.Count; i++)
         {
-            HighlightEffect highlight = findable[i].AddComponent<HighlightEffect>();
-            HighlightTrigger trigger = findable[i].AddComponent<HighlightTrigger>();
-            if(!findable[i].GetComponent<ObjectProperty>()) {
-                findable[i].AddComponent<ObjectProperty>();
-            }
+            HighlightEffect highlight = objectController.objects[i].AddComponent<HighlightEffect>();
+            HighlightTrigger trigger = objectController.objects[i].AddComponent<HighlightTrigger>();
+            if (!objectController.objects[i].GetComponent<ObjectProperty>()) objectController.objects[i].AddComponent<ObjectProperty>();
 
             highlight.ProfileLoad(highlightProfile);
         }
-
-        objectController = GetComponent<ObjectController>();
 
         TimerUI = GameUI.Find("Timer");
         CollectUI = GameUI.Find("Collect");
