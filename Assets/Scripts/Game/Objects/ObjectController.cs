@@ -27,7 +27,7 @@ public class ObjectController : MonoBehaviour
             if (!objects.Contains(randGameObject))
             {
                 GameObject _textObject = Instantiate(textObject, GameObject.Find("ObjectList").transform);
-                _textObject.name = randGameObject.name + "_text";
+                _textObject.name = randGameObject.name + "_" + randGameObject.transform.parent.name + "_text";
                 TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
 
                 textComponent.text = randGameObject.name + " (" + randGameObject.transform.parent.name + ")";
