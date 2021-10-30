@@ -77,6 +77,8 @@ public class GameManager : MonoBehaviour
 
         if (!gameOver)
         {
+            GameUI.Find("Cursor").gameObject.transform.position = Input.mousePosition;
+
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 paused = !paused;
