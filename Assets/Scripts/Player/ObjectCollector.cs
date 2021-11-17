@@ -11,6 +11,7 @@ public class ObjectCollector : MonoBehaviour
 
     GameObject gm;
 
+    public LayerMask layerMask;
 
     // Interactivity
     RaycastHit hit;
@@ -34,11 +35,14 @@ public class ObjectCollector : MonoBehaviour
     {
         // Raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, gameManager.raycastDistance)) {
+        if(Physics.Raycast(ray, out hit, gameManager.raycastDistance, layerMask, QueryTriggerInteraction.Ignore)) {
 
-            gameManager.showCollectUI(hit.transform.gameObject.tag == objectTag && objectController.objects.Contains(hit.transform.gameObject));
-            if (hit.transform.gameObject.tag == objectTag && objectController.objects.Contains(hit.transform.gameObject))
+            bool objectIsCollectable = (hit.transform.gameObject.tag == objectTag && objectController.objects.Contains(hit.transform.gameObject));
+            
+            gameManager.showCollectUI(objectIsCollectable);
+            if (objectIsCollectable)
             {
+                gameManager.showCollectUIAtTransform(true, hit.transform);
                 if (Input.GetKeyDown(playerController.interactKey))
                 {
                     hit.transform.GetComponent<ObjectProperty>().OnCollect();

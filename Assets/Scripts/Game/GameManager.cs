@@ -47,9 +47,11 @@ public class GameManager : MonoBehaviour
 
         for (int i = 0; i < objectController.objects.Count; i++)
         {
-            HighlightEffect highlight = objectController.objects[i].AddComponent<HighlightEffect>();
-            HighlightTrigger trigger = objectController.objects[i].AddComponent<HighlightTrigger>();
-            if (!objectController.objects[i].GetComponent<ObjectProperty>()) objectController.objects[i].AddComponent<ObjectProperty>();
+            GameObject obj = objectController.objects[i];
+
+            HighlightEffect highlight = obj.AddComponent<HighlightEffect>();
+            HighlightTrigger trigger = obj.AddComponent<HighlightTrigger>();
+            if (!obj.GetComponent<ObjectProperty>()) obj.AddComponent<ObjectProperty>();
 
             highlight.ProfileLoad(highlightProfile);
         }
@@ -131,6 +133,17 @@ public class GameManager : MonoBehaviour
     public void showCollectUI(bool show)
     {
         CollectUI.gameObject.SetActive(show);
+    }
+
+    public void showCollectUIAtTransform(bool show, Transform point)
+    {
+        showCollectUI(show);
+        Vector3 position = Camera.main.WorldToScreenPoint(point.position, Camera.MonoOrStereoscopicEye.Mono);
+        // float distance = Vector3.Distance(playerController.transform.position, position);
+        // Vector3 scale = new Vector3(distance * 0.5f, distance * 0.5f, distance * 0.5f);
+
+        CollectUI.position = position;
+        // CollectUI.localScale = scale.normalized;
     }
 
     public void showPauseScreen(bool show)
