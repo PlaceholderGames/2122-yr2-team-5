@@ -41,6 +41,11 @@ public class ObjectController : MonoBehaviour
         }
     }
 
+    public bool find(GameObject gameObject)
+    {
+        return this.objects.Contains(gameObject);
+    }
+
     public bool collectedAll()
     {
         return this.getCollectedObjects() >= this.objects.Count;
