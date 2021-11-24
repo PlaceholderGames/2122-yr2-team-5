@@ -20512,10 +20512,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 3355704721905223043, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 7242253742903407217, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -42407,6 +42403,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2cfdd7837906c964c93eb924c2c7a220, type: 3}
   m_PrefabInstance: {fileID: 1284253378}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1292954019 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4512669933720784851, guid: 272c8c2e0144d72479b3867bfdf7e7fe, type: 3}
+  m_PrefabInstance: {fileID: 2051464583}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1b56e38e5c7b249b8a3e0c1a3be76b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1293023688
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44144,6 +44151,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7843850293125112064, guid: 5d5fae64f4f7da448a41b7756d0afab8, type: 3}
+      propertyPath: settingsManager
+      value: 
+      objectReference: {fileID: 1292954019}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d5fae64f4f7da448a41b7756d0afab8, type: 3}
 --- !u!1001 &1343646751
