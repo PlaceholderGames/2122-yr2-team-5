@@ -25,9 +25,6 @@ public class ObjectCollector : MonoBehaviour
 
         gameManager = gm.GetComponent<GameManager>();
         objectController = gm.GetComponent<ObjectController>();
-
-
-        gameManager.showCollectUI(false);
     }
 
     // Update is called once per frame
@@ -35,20 +32,22 @@ public class ObjectCollector : MonoBehaviour
     {
         // Raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, gameManager.raycastDistance, layerMask, QueryTriggerInteraction.Ignore)) {
-
-            bool objectIsCollectable = (hit.transform.gameObject.tag == objectTag && objectController.objects.Contains(hit.transform.gameObject));
-            
-            gameManager.showCollectUI(objectIsCollectable);
-            if (objectIsCollectable)
+        gameManager.showCollectUI(false);
+        if (Physics.Raycast(ray, out hit, gameManager.raycastDistance, layerMask, QueryTriggerInteraction.Ignore))
+        {
+            bool canCollect = hit.transform.tag == objectTag && objectController.find(hit.transform.gameObject);
+            gameManager.showCollectUI(canCollect);
+            if (canCollect)
             {
-                gameManager.showCollectUIAtTransform(true, hit.transform);
+                gameManager.showCollectUIAtTransform(canCollect, hit.transform);
                 if (Input.GetKeyDown(playerController.interactKey))
                 {
                     hit.transform.GetComponent<ObjectProperty>().OnCollect();
                 }
             }
-        } else {
+        }
+        else
+        {
             gameManager.showCollectUI(false);
         }
     }

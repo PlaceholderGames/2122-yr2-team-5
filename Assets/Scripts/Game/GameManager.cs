@@ -15,16 +15,19 @@ public class GameManager : MonoBehaviour
     [Header("Timer")]
     public float timerInSeconds = (5 * 60);
 
-    [Header("UI")]
-    public Transform GameUI;
-    public Transform GameOverUI;
-    public Transform PauseUI;
-    public Transform SettingsUI;
-    public Transform LoadingUI;
-    Transform TimerUI;
-    Transform CollectUI;
-    Transform CollectablesUI;
-    Transform RoomUI;
+    public GameObject UI;
+    GameObject GameUI;
+    GameObject GameOverUI;
+    GameObject PauseUI;
+    GameObject SettingsUI;
+    GameObject LoadingUI;
+
+    GameObject TimerUI;
+
+    [SerializeField]
+    GameObject CollectUI;
+    GameObject CollectablesUI;
+    GameObject RoomUI;
 
     [Header("Interaction Distance")]
     public float raycastDistance = 4f;
@@ -33,12 +36,28 @@ public class GameManager : MonoBehaviour
     bool paused;
     bool showCollectables;
 
+    GameObject player;
     Controller playerController;
     ObjectController objectController;
 
     // Start is called before the first frame update
     void Start()
     {
+        GameUI = UI.transform.Find("Game").gameObject;
+        GameOverUI = UI.transform.Find("GameOver").gameObject;
+        PauseUI = UI.transform.Find("Paused").gameObject;
+        SettingsUI = UI.transform.Find("Settings").gameObject;
+        LoadingUI = UI.transform.Find("LoadingScreen").gameObject;
+
+        TimerUI = GameUI.transform.Find("Timer").gameObject;
+        CollectUI = GameUI.transform.Find("Collect").gameObject;
+        CollectablesUI = GameUI.transform.Find("Objects").gameObject;
+        RoomUI = GameUI.transform.Find("Room").gameObject;
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerController = player.GetComponent<Controller>();
+        CollectUI.transform.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
+
         gameOver = false;
         paused = false;
         showCollectables = true;
@@ -55,14 +74,6 @@ public class GameManager : MonoBehaviour
 
             highlight.ProfileLoad(highlightProfile);
         }
-
-        TimerUI = GameUI.Find("Timer");
-        CollectUI = GameUI.Find("Collect");
-        CollectablesUI = GameUI.Find("Objects");
-        RoomUI = GameUI.Find("Room");
-
-        playerController = GameObject.Find("Player").GetComponent<Controller>();
-        CollectUI.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
 
         GameUI.gameObject.SetActive(true);
         GameOverUI.gameObject.SetActive(false);
@@ -132,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     public void showCollectUI(bool show)
     {
-        CollectUI.gameObject.SetActive(show);
+        CollectUI.SetActive(show);
     }
 
     public void showCollectUIAtTransform(bool show, Transform point)
@@ -142,7 +153,7 @@ public class GameManager : MonoBehaviour
         // float distance = Vector3.Distance(playerController.transform.position, position);
         // Vector3 scale = new Vector3(distance * 0.5f, distance * 0.5f, distance * 0.5f);
 
-        CollectUI.position = position;
+        CollectUI.transform.position = position;
         // CollectUI.localScale = scale.normalized;
     }
 
@@ -156,7 +167,7 @@ public class GameManager : MonoBehaviour
     void showRoom(string roomName)
     {
         RoomUI.gameObject.SetActive(!(roomName == "None"));
-        RoomUI.Find("Value").GetComponent<TMPro.TextMeshProUGUI>().text = roomName;
+        RoomUI.transform.Find("Value").GetComponent<TMPro.TextMeshProUGUI>().text = roomName;
     }
 
     public bool isGameOver()
@@ -188,9 +199,9 @@ public class GameManager : MonoBehaviour
     {
         bool isSuccess = collectedAll && timeLeft > 0;
 
-        GameObject stateText = GameOverUI.Find("State").gameObject;
-        GameObject timeText = GameOverUI.Find("Time").gameObject;
-        GameObject itemText = GameOverUI.Find("Items").gameObject;
+        GameObject stateText = GameOverUI.transform.Find("State").gameObject;
+        GameObject timeText = GameOverUI.transform.Find("Time").gameObject;
+        GameObject itemText = GameOverUI.transform.Find("Items").gameObject;
 
         stateText.GetComponent<TextMeshProUGUI>().text = isSuccess ? "You collected all the items!" : "You didn't collect all the items";
 
@@ -206,7 +217,7 @@ public class GameManager : MonoBehaviour
 
     void displayTime(float time)
     {
-        TMPro.TextMeshProUGUI timerText = TimerUI.Find("Value").GetComponent<TMPro.TextMeshProUGUI>();
+        TMPro.TextMeshProUGUI timerText = TimerUI.transform.Find("Value").GetComponent<TMPro.TextMeshProUGUI>();
 
         if (time < 0) time = 0;
 

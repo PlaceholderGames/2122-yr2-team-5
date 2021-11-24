@@ -207,14 +207,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactKey: 101
-  speed: 1
+  speed: 10
   jumpHeight: 2
-  gravity: -9.81
+  gravity: -14.715
   groundCheck: {fileID: 8499023290343780337}
   groundDistance: 0.4
   groundLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 576
   lastPosition: {x: 0, y: 0, z: 0}
   currentRoom: None
 --- !u!114 &6234493044808548164
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 128
   objectTag: FindMe
 --- !u!1 &7343682209217923831
 GameObject:
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 110a4c4b1b32e7e489029d6495e4ce6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 100
+  mouseSensitivity: 300
 --- !u!1 &7375626973037541326
 GameObject:
   m_ObjectHideFlags: 0
