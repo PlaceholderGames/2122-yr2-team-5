@@ -37,6 +37,7 @@ public class ObjectCollector : MonoBehaviour
         {
             bool canCollect = hit.transform.tag == objectTag && objectController.find(hit.transform.gameObject);
             gameManager.showCollectUI(canCollect);
+            
             if (canCollect)
             {
                 gameManager.showCollectUIAtTransform(canCollect, hit.transform);
