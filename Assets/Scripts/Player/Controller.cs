@@ -29,15 +29,18 @@ public class Controller : MonoBehaviour
     public string currentRoom = "None";
 
 
+    GameManager gm;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!GameObject.Find("GameManager").GetComponent<GameManager>().isGameOver())
+        if (!gm.isGameOver() && gm.finishedTutorial && !gm.isPaused())
         {
             lastPosition = transform.position;
 
