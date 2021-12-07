@@ -64,17 +64,6 @@ public class GameManager : MonoBehaviour
 
         objectController = GetComponent<ObjectController>();
 
-        for (int i = 0; i < objectController.objects.Count; i++)
-        {
-            GameObject obj = objectController.objects[i];
-
-            HighlightEffect highlight = obj.AddComponent<HighlightEffect>();
-            HighlightTrigger trigger = obj.AddComponent<HighlightTrigger>();
-            if (!obj.GetComponent<ObjectProperty>()) obj.AddComponent<ObjectProperty>();
-
-            highlight.ProfileLoad(highlightProfile);
-        }
-
         GameUI.gameObject.SetActive(true);
         GameOverUI.gameObject.SetActive(false);
         PauseUI.gameObject.SetActive(false);

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+using HighlightPlus;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -38,6 +39,22 @@ public class ObjectController : MonoBehaviour
                 _textObject.transform.localScale = Vector3.one;
                 objects.Add(randGameObject);
             }
+        }
+
+        addHighlighting(GameObject.Find("GameManager").GetComponent<GameManager>().highlightProfile);
+    }
+
+    public void addHighlighting(HighlightPlus.HighlightProfile profile)
+    {
+        for (int i = 0; i < this.objects.Count; i++)
+        {
+            GameObject obj = this.objects[i];
+
+            HighlightEffect highlight = obj.AddComponent<HighlightEffect>();
+            HighlightTrigger trigger = obj.AddComponent<HighlightTrigger>();
+            if (!obj.GetComponent<ObjectProperty>()) obj.AddComponent<ObjectProperty>();
+
+            highlight.ProfileLoad(profile);
         }
     }
 
