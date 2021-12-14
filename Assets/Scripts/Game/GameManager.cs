@@ -156,8 +156,15 @@ public class GameManager : UIManager
         showRoom(playerController.currentRoom);
     }
 
+    public Controller getPlayer()
+    {
+        return playerController;
+    }
 
-
+    public void setPaused(bool value)
+    {
+        this.paused = value;
+    }
 
     public void showCollectUI(bool show)
     {

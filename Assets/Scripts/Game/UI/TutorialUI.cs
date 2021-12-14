@@ -22,6 +22,9 @@ public class TutorialUI : UIManager
         }
 
         pages[current_page].SetActive(true);
+
+        string interactText = pages[3].transform.Find("Content").Find("Description").GetComponent<TMPro.TextMeshProUGUI>().text;
+        pages[3].transform.Find("Content").Find("Description").GetComponent<TMPro.TextMeshProUGUI>().text = interactText.Replace("[Key]", gm.getPlayer().interactKey.ToString());
     }
 
     private void Update()
