@@ -9,7 +9,9 @@ using UnityEngine.UI;
 public class ObjectController : MonoBehaviour
 {
     public int objectsToFind = 10;
-    int objectsFound;
+
+    [HideInInspector]
+    public int objectsFound;
 
     public GameObject textObject;
     
@@ -28,8 +30,13 @@ public class ObjectController : MonoBehaviour
             GameObject randGameObject = collectablesInScene[Random.Range(0, collectablesInScene.Length)];
             if (!collectables.Contains(randGameObject))
             {
+                if (!randGameObject.GetComponent<ObjectProperty>()) randGameObject.AddComponent<ObjectProperty>();
+
+                string collectableName = randGameObject.name + "_" + randGameObject.transform.parent.name + "_text";
+
                 GameObject _textObject = Instantiate(textObject, GameObject.Find("ObjectList").transform);
-                _textObject.name = randGameObject.name + "_" + randGameObject.transform.parent.name + "_text";
+                _textObject.name = collectableName;
+                randGameObject.GetComponent<ObjectProperty>().textObject = _textObject;
                 TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
 
                 textComponent.text = randGameObject.name + " (" + randGameObject.transform.parent.name + ")";
@@ -43,28 +50,6 @@ public class ObjectController : MonoBehaviour
             }
         }
 
-        /**
-        for(int i = 0; i < objects.Capacity; i++)
-        {
-            GameObject[] gameobjects = GameObject.FindGameObjectsWithTag("FindMe");
-            GameObject randGameObject = gameobjects[Random.Range(0, gameobjects.Length)];
-            if (!objects.Contains(randGameObject))
-            {
-                GameObject _textObject = Instantiate(textObject, GameObject.Find("ObjectList").transform);
-                _textObject.name = randGameObject.name + "_" + randGameObject.transform.parent.name + "_text";
-                TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
-
-                textComponent.text = randGameObject.name + " (" + randGameObject.transform.parent.name + ")";
-
-                LayoutElement layoutElement = _textObject.AddComponent<LayoutElement>();
-                layoutElement.minHeight = 32;
-                layoutElement.preferredHeight = 32;
-                _textObject.transform.localScale = Vector3.one;
-                collectables.Add(randGameObject);
-            }
-        }
-        **/
-
         addHighlighting(GameObject.Find("GameManager").GetComponent<GameManager>().highlightProfile);
     }
 
@@ -76,7 +61,6 @@ public class ObjectController : MonoBehaviour
 
             HighlightEffect highlight = obj.AddComponent<HighlightEffect>();
             HighlightTrigger trigger = obj.AddComponent<HighlightTrigger>();
-            if (!obj.GetComponent<ObjectProperty>()) obj.AddComponent<ObjectProperty>();
 
             highlight.ProfileLoad(profile);
         }

@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ObjectProperty : MonoBehaviour
 {
-    public float secondsToAdd = 30;
+    public float secondsToRemove = 5;
     GameManager gm;
     ObjectController objectController;
+
+    public GameObject textObject;
 
     void Start()
     {
@@ -18,8 +20,8 @@ public class ObjectProperty : MonoBehaviour
     {
         objectController.collect();
         GameObject objectListUI = GameObject.Find("ObjectList");
-        objectListUI.transform.Find(transform.name + "_" + transform.parent.name + "_text").gameObject.SetActive(false);
+        textObject.SetActive(false);
         transform.gameObject.SetActive(false);
-        gm.timerInSeconds += 30;
+        gm.timeInSeconds -= secondsToRemove;
     }
 }

@@ -13,8 +13,7 @@ public class GameManager : UIManager
     public HighlightPlus.HighlightProfile highlightProfile;
     public bool isTutorial;
 
-    [Header("Timer")]
-    public float timerInSeconds = (5 * 60);
+    public float timeInSeconds = 0;
 
     public GameObject UI;
     GameObject GameUI;
@@ -43,6 +42,9 @@ public class GameManager : UIManager
 
     [HideInInspector]
     public bool finishedTutorial = false;
+
+    [HideInInspector]
+    public GameObject star;
 
     // Start is called before the first frame update
     void Start()
@@ -126,32 +128,21 @@ public class GameManager : UIManager
 
             if (player.transform.position != playerController.lastPosition && GetComponent<TrafficLightController>().currentState == TrafficLightState.STOP)
             {
-                timerInSeconds -= GetComponent<TrafficLightController>().playerMoveTime * Time.deltaTime;
+                timeInSeconds += (GetComponent<TrafficLightController>().playerMoveTime) * Time.deltaTime * Time.timeScale;
             }
 
-            if (timerInSeconds > 0)
-            {
-                if (!objectController.collectedAll())
-                {
-                    timerInSeconds -= (Time.deltaTime * Time.timeScale);
-                }
-            }
-            else
-            {
-                timerInSeconds = 0;
-            }
+            updateTime();
         }
 
         CollectablesUI.gameObject.SetActive(showCollectables);
 
-        if (timerInSeconds <= 0 || objectController.collectedAll())
+        if (objectController.collectedAll())
         {
             gameOver = true;
-            if (timerInSeconds <= 0) timerInSeconds = 0;
-            displayGameOver(objectController.collectedAll(), timerInSeconds);
+            displayGameOver(objectController.collectedAll(), timeInSeconds);
         }
 
-        displayTime(timerInSeconds);
+        displayTime(timeInSeconds);
         showPauseScreen(paused);
         showRoom(playerController.currentRoom);
     }
@@ -175,17 +166,13 @@ public class GameManager : UIManager
     {
         showCollectUI(show);
         Vector3 position = Camera.main.WorldToScreenPoint(point.position, Camera.MonoOrStereoscopicEye.Mono);
-        // float distance = Vector3.Distance(playerController.transform.position, position);
-        // Vector3 scale = new Vector3(distance * 0.5f, distance * 0.5f, distance * 0.5f);
-
         CollectUI.transform.position = position;
-        // CollectUI.localScale = scale.normalized;
     }
 
     public void showPauseScreen(bool show)
     {
         showCollectUI(!show);
-        GameUI.gameObject.SetActive(!show);
+        GameUI.gameObject.SetActive(!show && !gameOver);
         PauseUI.gameObject.SetActive(show);
     }
 
@@ -220,24 +207,55 @@ public class GameManager : UIManager
         return paused;
     }
 
+    int calculateStars()
+    {
+        float itemWorthPerStar = objectController.objectsToFind / 3;
+        float collectedItemsPerStar = objectController.objectsFound / 3;
+
+        int collectedStars = Mathf.RoundToInt((collectedItemsPerStar / itemWorthPerStar));
+
+        return Mathf.FloorToInt(collectedStars / (timeInSeconds / 60) * 3);
+    }
+
     void displayGameOver(bool collectedAll, float timeLeft)
     {
-        bool isSuccess = collectedAll && timeLeft > 0;
+        GameUI.SetActive(false);
 
+        int starsAchieved = calculateStars();
+        Color onStar = new Color(1, 0.9490197f, 0);
+        Color offStar = new Color(0.6f, 0.6f, 0.6f);
+
+        GameObject stars = GameOverUI.transform.Find("Stars").gameObject;
         GameObject stateText = GameOverUI.transform.Find("State").gameObject;
         GameObject timeText = GameOverUI.transform.Find("Time").gameObject;
         GameObject itemText = GameOverUI.transform.Find("Items").gameObject;
 
+        for(int s = 0; s < stars.transform.childCount; s++)
+        {
+            GameObject star = stars.transform.GetChild(s).gameObject;
+            star.GetComponent<Image>().color = s + 1 <= starsAchieved ? onStar : offStar;
+        }
+
+        bool isSuccess = collectedAll && timeLeft > 0;
+
         stateText.GetComponent<TextMeshProUGUI>().text = isSuccess ? "You collected all the items!" : "You didn't collect all the items";
 
-        float minutes = Mathf.FloorToInt(timerInSeconds / 60);
-        float seconds = Mathf.FloorToInt(timerInSeconds % 60);
+        float minutes = Mathf.FloorToInt(timeInSeconds / 60);
+        float seconds = Mathf.FloorToInt(timeInSeconds % 60);
         timeText.GetComponent<TextMeshProUGUI>().text = string.Format("Time remaining: {0:00}:{1:00}", minutes, seconds);
 
         itemText.GetComponent<TextMeshProUGUI>().text = "Objects collected: " + objectController.getCollectedObjects();
 
-        GameUI.gameObject.SetActive(false);
         GameOverUI.gameObject.SetActive(true);
+    }
+
+    void updateTime()
+    {
+        if (timeInSeconds < 0) timeInSeconds = 0;
+        if (!objectController.collectedAll())
+        {
+            timeInSeconds += (Time.deltaTime * Time.timeScale);
+        }
     }
 
     void displayTime(float time)
@@ -245,9 +263,6 @@ public class GameManager : UIManager
         TMPro.TextMeshProUGUI timerText = TimerUI.transform.Find("Value").GetComponent<TMPro.TextMeshProUGUI>();
 
         if (time < 0) time = 0;
-
-        if (time <= 60) timerText.color = new Color(1, 0, 0);
-        else timerText.color = new Color(1, 1, 1);
 
         float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);

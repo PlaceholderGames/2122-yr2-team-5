@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
 
             if (Input.GetButton("Sprint"))
             {
-                controller.Move(move * (speed * 2) * Time.deltaTime);
+                controller.Move(move * (speed * 1.5f) * Time.deltaTime);
             } else
             {
                 controller.Move(move * speed * Time.deltaTime);
