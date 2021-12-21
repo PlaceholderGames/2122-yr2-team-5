@@ -20837,6 +20837,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5512253541219798, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3355704721905223043, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -20844,6 +20848,14 @@ PrefabInstance:
     - target: {fileID: 3355704721905223043, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053301642559377876, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4053301642559377876, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6234493044808548164, guid: 9e33375854b304a43bfbc6ff67ea73d7, type: 3}
       propertyPath: layerMask.m_Bits

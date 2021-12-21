@@ -38,7 +38,7 @@ public class GameManager : UIManager
     bool showCollectables;
 
     GameObject player;
-    Controller playerController;
+    PlayerController playerController;
     ObjectController objectController;
 
     [HideInInspector]
@@ -60,7 +60,7 @@ public class GameManager : UIManager
         RoomUI = GameUI.transform.Find("Room").gameObject;
 
         player = GameObject.FindGameObjectWithTag("Player");
-        playerController = player.GetComponent<Controller>();
+        playerController = player.GetComponent<PlayerController>();
         CollectUI.transform.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
 
         gameOver = false;
@@ -156,7 +156,7 @@ public class GameManager : UIManager
         showRoom(playerController.currentRoom);
     }
 
-    public Controller getPlayer()
+    public PlayerController getPlayer()
     {
         return playerController;
     }

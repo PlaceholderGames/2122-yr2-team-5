@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     [Header("User control")]

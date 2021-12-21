@@ -5,7 +5,7 @@ using HighlightPlus;
 
 public class ObjectCollector : MonoBehaviour
 {
-    Controller playerController;
+    PlayerController playerController;
     GameManager gameManager;
     ObjectController objectController;
 
@@ -20,7 +20,7 @@ public class ObjectCollector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerController = GetComponent<Controller>();
+        playerController = GetComponent<PlayerController>();
         gm = GameObject.Find("GameManager");
 
         gameManager = gm.GetComponent<GameManager>();

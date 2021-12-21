@@ -5,11 +5,11 @@ using UnityEngine;
 public class RoomManager : MonoBehaviour
 {
 
-    Controller player;
+    PlayerController player;
 
     public void Start()
     {
-        player = GameObject.Find("Player").GetComponent<Controller>();
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
