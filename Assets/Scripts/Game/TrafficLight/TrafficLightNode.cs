@@ -13,11 +13,14 @@ public class TrafficLightNode : MonoBehaviour
     public Color warning = new Color(1.0f, 0.65f, 0, 1);
     public Color go = Color.green;
 
+    public bool automateTag = true;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GameObject.Find("GameManager").GetComponent<TrafficLightController>();
         nodeLight = GetComponent<Light>();
+        if(automateTag) transform.tag = "trafficLightNode";
     }
 
     // Update is called once per frame
