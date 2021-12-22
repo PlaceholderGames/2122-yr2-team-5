@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
-public class Controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     [Header("User control")]
@@ -29,15 +29,18 @@ public class Controller : MonoBehaviour
     public string currentRoom = "None";
 
 
+    GameManager gm;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!GameObject.Find("GameManager").GetComponent<GameManager>().isGameOver())
+        if (!gm.isGameOver() && gm.completedTutorial && !gm.isPaused())
         {
             lastPosition = transform.position;
 
@@ -54,7 +57,7 @@ public class Controller : MonoBehaviour
 
             if (Input.GetButton("Sprint"))
             {
-                controller.Move(move * (speed * 2) * Time.deltaTime);
+                controller.Move(move * (speed * 1.5f) * Time.deltaTime);
             } else
             {
                 controller.Move(move * speed * Time.deltaTime);
