@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4294967295
   objectTag: FindMe
 --- !u!1 &7343682209217923831
 GameObject:

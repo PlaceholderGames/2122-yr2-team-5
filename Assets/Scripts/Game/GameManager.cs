@@ -42,6 +42,7 @@ public class GameManager : UIManager
 
     [HideInInspector]
     public bool finishedTutorial = false;
+    public bool completedTutorial;
 
     [HideInInspector]
     public GameObject star;
@@ -106,6 +107,8 @@ public class GameManager : UIManager
         {
             hideScreen(TutorialUI);
         }
+
+        completedTutorial = isTutorial ? finishedTutorial : true;
 
 
         if (!gameOver)
