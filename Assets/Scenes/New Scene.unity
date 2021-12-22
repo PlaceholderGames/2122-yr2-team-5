@@ -1752,6 +1752,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2.0479999}
   m_Center: {x: 0, y: 0, z: 0.023999989}
+--- !u!114 &120859626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120859621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1 &136191266 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
@@ -1770,6 +1783,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9658033, y: 3.6208487, z: 1.8796573}
   m_Center: {x: -0.48290175, y: -0.2676854, z: -0.21486592}
+--- !u!114 &136191268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136191266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1 &141887745 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e231fd0d3b02de4cb4d831a0c6ebe4b, type: 3}
@@ -2390,6 +2416,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
       propertyPath: m_Name
       value: washing machine (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
@@ -3810,6 +3844,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6335ab06e5a93e24ab4479e4c69ea15b, type: 3}
       propertyPath: m_Name
       value: Computer (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6335ab06e5a93e24ab4479e4c69ea15b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6335ab06e5a93e24ab4479e4c69ea15b, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6335ab06e5a93e24ab4479e4c69ea15b, type: 3}
@@ -6746,6 +6788,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: fridge (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef5233abfd29988468e659f3c9af405f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef5233abfd29988468e659f3c9af405f, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef5233abfd29988468e659f3c9af405f, type: 3}
 --- !u!1001 &705322090
@@ -7546,6 +7596,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6110925, y: 2.426, z: 3.2043889}
   m_Center: {x: 0, y: -0.213, z: 0}
+--- !u!114 &747509584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747509580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1001 &748500490
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7977,6 +8040,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 6335ab06e5a93e24ab4479e4c69ea15b, type: 3}
   m_PrefabInstance: {fileID: 402056743}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &807390682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807390680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!65 &807390684
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10253,6 +10329,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.000001, y: 3.7490313, z: 2.1209202}
   m_Center: {x: 0, y: 0, z: 0.060459703}
+--- !u!114 &1066698546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1066698541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1 &1074341107 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 25f277422ecf5e1439a93297319b0006, type: 3}
@@ -10761,6 +10850,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: fridge (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef5233abfd29988468e659f3c9af405f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ef5233abfd29988468e659f3c9af405f, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef5233abfd29988468e659f3c9af405f, type: 3}
 --- !u!1 &1090646702
@@ -10888,6 +10985,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 2.0479999}
   m_Center: {x: 0, y: 0, z: 0.023999989}
+--- !u!114 &1102473844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102473839}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1001 &1105648693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12087,6 +12197,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
       propertyPath: m_Name
       value: washing machine (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1281f8cad507c1346ba387ad25655c76, type: 3}
@@ -15503,6 +15621,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.000001, y: 3.7490313, z: 2.1209202}
   m_Center: {x: 0, y: 0, z: 0.060459703}
+--- !u!114 &1613050646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1613050641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1001 &1620953658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16940,6 +17071,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TV
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
 --- !u!4 &1790448794 stripped
@@ -17096,6 +17235,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9658033, y: 3.6208487, z: 1.8796573}
   m_Center: {x: -0.48290175, y: -0.2676854, z: -0.21486592}
+--- !u!114 &1879008107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879008105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1 &1879773151
 GameObject:
   m_ObjectHideFlags: 0
@@ -17594,6 +17746,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.6110925, y: 2.426, z: 3.2043889}
   m_Center: {x: 0, y: -0.213, z: 0}
+--- !u!114 &1911202625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911202621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccce9ff4614970b40b6f03846ab8a131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsToAdd: 30
 --- !u!1001 &1914444037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17978,6 +18143,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
       propertyPath: m_Name
       value: Chair (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
@@ -20167,6 +20340,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chair
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6808c1f5cbdfc874fa56ea53677bf794, type: 3}
 --- !u!1001 &2135004703
@@ -20223,6 +20404,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
       propertyPath: m_Name
       value: TV (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
+      propertyPath: m_TagString
+      value: FindMe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b321550abe82146478ef8ac7554d98a5, type: 3}
