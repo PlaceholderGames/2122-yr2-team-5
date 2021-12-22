@@ -66,7 +66,7 @@ public class ObjectController : MonoBehaviour
         }
     }
 
-    public bool find(GameObject gameObject)
+    public bool Find(GameObject gameObject)
     {
         return this.collectables.Contains(gameObject);
     }

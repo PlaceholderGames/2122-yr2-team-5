@@ -11,10 +11,12 @@ public class TutorialUI : UIManager
     [SerializeField]
     private int current_page = 0;
     private GameManager gm;
+    private PlayerController player;
 
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        player = gm.getPlayer() != null ? gm.getPlayer() : GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         for (int i = 0; i < pages.Length; i++)
         {
@@ -24,11 +26,16 @@ public class TutorialUI : UIManager
         pages[current_page].SetActive(true);
 
         string interactText = pages[3].transform.Find("Content").Find("Description").GetComponent<TMPro.TextMeshProUGUI>().text;
-
-        /*Debug.Log(pages[3].transform.Find("Content").Find("Description").GetComponent<TMPro.TextMeshProUGUI>().text);
-        Debug.Log(gm.getPlayer().interactKey.ToString());
-        Debug.Log(gm.getPlayer());*/
-        pages[3].transform.Find("Content").Find("Description").GetComponent<TMPro.TextMeshProUGUI>().text = interactText.Replace("[Key]", gm.getPlayer().interactKey.ToString());
+        if (interactText.Contains("[Key]"))
+        {
+            string replacedText = interactText.Replace("[Key]", player.interactKey.ToString());
+            Transform description = pages[3].transform.Find("Content").Find("Description");
+            TMPro.TextMeshProUGUI textComponent = description.GetComponent<TMPro.TextMeshProUGUI>();
+            if(textComponent)
+            {
+                textComponent.text = replacedText;
+            }
+        }
     }
 
     private void Update()

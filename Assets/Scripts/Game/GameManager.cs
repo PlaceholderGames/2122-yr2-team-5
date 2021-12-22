@@ -63,7 +63,7 @@ public class GameManager : UIManager
 
         player = GameObject.FindGameObjectWithTag("Player");
         playerController = player.GetComponent<PlayerController>();
-        CollectUI.transform.Find("Label").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
+        CollectUI.transform.Find("Text").Find("Key").GetComponent<TMPro.TextMeshProUGUI>().text = "Press " + playerController.interactKey + " to collect";
 
         gameOver = false;
         paused = false;
@@ -164,9 +164,10 @@ public class GameManager : UIManager
 
     public void showCollectUIAtTransform(bool show, Transform point)
     {
-        showCollectUI(show);
+        CollectUI.transform.Find("Text").Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = point.transform.name;
         Vector3 position = Camera.main.WorldToScreenPoint(point.position, Camera.MonoOrStereoscopicEye.Mono);
         CollectUI.transform.position = position;
+        showCollectUI(show);
     }
 
     public void showPauseScreen(bool show)

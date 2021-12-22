@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverUI : LoadingUI
 {
@@ -9,13 +10,13 @@ public class GameOverUI : LoadingUI
 
     private void Start()
     {
-        UI = GameObject.Find("UI").transform;
-        LoadingScreen = GameObject.Find("UI").transform.Find("LoadingScreen");
+        UI = transform;
+        LoadingScreen = transform.Find("LoadingScreen");
     }
 
     public void playAgain()
     {
-        loadScene("map v2", UI, LoadingScreen);
+        loadScene(SceneManager.GetActiveScene().name, UI, LoadingScreen);
     }
 
     public void next(string nextMapName)

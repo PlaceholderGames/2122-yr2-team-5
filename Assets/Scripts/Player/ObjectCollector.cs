@@ -32,10 +32,9 @@ public class ObjectCollector : MonoBehaviour
     {
         // Raycast
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        gameManager.showCollectUI(false);
         if (Physics.Raycast(ray, out hit, gameManager.raycastDistance, layerMask, QueryTriggerInteraction.Ignore))
         {
-            bool canCollect = hit.transform.tag == objectTag && objectController.find(hit.transform.gameObject);
+            bool canCollect = objectController.Find(hit.transform.gameObject);
             gameManager.showCollectUI(canCollect);
             
             if (canCollect)
