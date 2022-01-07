@@ -22,6 +22,11 @@ public class LoadingUI : UIManager
         StartCoroutine(LoadSceneAsync(sceneName));
     }
 
+    public void loadScene(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
+    }
+
     IEnumerator LoadSceneAsync(string name)
     {
         AsyncOperation operation = SceneManager.LoadSceneAsync(name);
