@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gm.isGameOver() && gm.finishedTutorial && !gm.isPaused())
+        if (!gm.isGameOver() && gm.completedTutorial && !gm.isPaused())
         {
             lastPosition = transform.position;
 

@@ -36,12 +36,12 @@ public class MouseLook : MonoBehaviour
         invertLookY = intToBool(PlayerPrefs.GetInt("mouse.invert.y"));
         mouseSensitivity = PlayerPrefs.GetFloat("mouse.sensitivity");
 
-        Cursor.visible = gm.isPaused() || gm.isGameOver() || !gm.finishedTutorial;
-        if(gm.isPaused() || gm.isGameOver() || !gm.finishedTutorial) Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = gm.isPaused() || gm.isGameOver() || !gm.completedTutorial;
+        if(gm.isPaused() || gm.isGameOver() || !gm.completedTutorial) Cursor.lockState = CursorLockMode.None;
         else Cursor.lockState = CursorLockMode.Locked;
 
 
-        if (!gm.isGameOver() && gm.finishedTutorial && !gm.isPaused())
+        if (!gm.isGameOver() && gm.completedTutorial && !gm.isPaused())
         {
             // Mouse Look
             float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
