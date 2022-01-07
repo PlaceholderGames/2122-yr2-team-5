@@ -47,6 +47,9 @@ public class GameManager : UIManager
     [HideInInspector]
     public GameObject star;
 
+    [SerializeField]
+    private float starRate = 1.25f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -213,12 +216,14 @@ public class GameManager : UIManager
 
     int calculateStars()
     {
-        float itemWorthPerStar = objectController.objectsToFind / 3;
-        float collectedItemsPerStar = objectController.objectsFound / 3;
+        // Visual graph of star calculation
+        // https://www.desmos.com/calculator/t8lq8kbzms
 
-        int collectedStars = Mathf.RoundToInt((collectedItemsPerStar / itemWorthPerStar));
+        // c = ( O / ( timeInSeconds / 60 ))
+        float collectablePerMinute = objectController.objectsFound / (timeInSeconds / 60);
 
-        return Mathf.FloorToInt(collectedStars / (timeInSeconds / 60) * 3);
+        // y = (c/(f/f*r))/2
+        return (int)(collectablePerMinute / (objectController.objectsToFind * starRate));
     }
 
     void displayGameOver(bool collectedAll, float timeLeft)
@@ -240,7 +245,7 @@ public class GameManager : UIManager
             star.GetComponent<Image>().color = s + 1 <= starsAchieved ? onStar : offStar;
         }
 
-        bool isSuccess = collectedAll && timeLeft > 0;
+        bool isSuccess = collectedAll;
 
         stateText.GetComponent<TextMeshProUGUI>().text = isSuccess ? "You collected all the items!" : "You didn't collect all the items";
 
