@@ -6,12 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    public void showScreen(GameObject screen)
+    public void showScreen(Transform transform)
     {
-        screen.SetActive(true);
+        transform.gameObject.SetActive(true);
     }
-    public void hideScreen(GameObject screen)
+    public void hideScreen(Transform transform)
     {
-        screen.SetActive(false);
+
+        transform.gameObject.SetActive(false);
     }
 }

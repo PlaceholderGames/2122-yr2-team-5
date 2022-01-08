@@ -48,7 +48,8 @@ public class GameManager : UIManager
     public GameObject star;
 
     [SerializeField]
-    private float starRate = 1.25f;
+    private float difficulty = 1.25f;
+    public int starScore = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -104,11 +105,11 @@ public class GameManager : UIManager
 
         if(isTutorial)
         {
-            if (finishedTutorial) hideScreen(TutorialUI);
-            else showScreen(TutorialUI);
+            if (finishedTutorial) hideScreen(TutorialUI.transform);
+            else showScreen(TutorialUI.transform);
         } else
         {
-            hideScreen(TutorialUI);
+            hideScreen(TutorialUI.transform);
         }
 
         completedTutorial = isTutorial ? finishedTutorial : true;
@@ -223,37 +224,31 @@ public class GameManager : UIManager
         float collectablePerMinute = objectController.objectsFound / (timeInSeconds / 60);
 
         // y = (c/(f/f*r))/2
-        return (int)(collectablePerMinute / (objectController.objectsToFind * starRate));
+        return (int)(collectablePerMinute / (objectController.objectsToFind * difficulty));
     }
 
     void displayGameOver(bool collectedAll, float timeLeft)
     {
         GameUI.SetActive(false);
 
-        int starsAchieved = calculateStars();
+        starScore = calculateStars();
         Color onStar = new Color(1, 0.9490197f, 0);
         Color offStar = new Color(0.6f, 0.6f, 0.6f);
 
         GameObject stars = GameOverUI.transform.Find("Stars").gameObject;
-        GameObject stateText = GameOverUI.transform.Find("State").gameObject;
         GameObject timeText = GameOverUI.transform.Find("Time").gameObject;
-        GameObject itemText = GameOverUI.transform.Find("Items").gameObject;
 
         for(int s = 0; s < stars.transform.childCount; s++)
         {
             GameObject star = stars.transform.GetChild(s).gameObject;
-            star.GetComponent<Image>().color = s + 1 <= starsAchieved ? onStar : offStar;
+            star.GetComponent<Image>().color = s + 1 <= starScore ? onStar : offStar;
         }
 
         bool isSuccess = collectedAll;
 
-        stateText.GetComponent<TextMeshProUGUI>().text = isSuccess ? "You collected all the items!" : "You didn't collect all the items";
-
         float minutes = Mathf.FloorToInt(timeInSeconds / 60);
         float seconds = Mathf.FloorToInt(timeInSeconds % 60);
-        timeText.GetComponent<TextMeshProUGUI>().text = string.Format("Time remaining: {0:00}:{1:00}", minutes, seconds);
-
-        itemText.GetComponent<TextMeshProUGUI>().text = "Objects collected: " + objectController.getCollectedObjects();
+        timeText.GetComponent<TextMeshProUGUI>().text = string.Format("Time: {0:00}:{1:00}", minutes, seconds);
 
         GameOverUI.gameObject.SetActive(true);
     }
