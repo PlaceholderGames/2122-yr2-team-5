@@ -21,6 +21,8 @@ public class ObjectController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(objectsToFind > GameObject.FindGameObjectsWithTag("FindMe").Length) { objectsToFind = GameObject.FindGameObjectsWithTag("FindMe").Length;  }
+
         collectables = new List<GameObject>(objectsToFind);
         GameObject[] collectablesInScene = GameObject.FindGameObjectsWithTag("FindMe");
 
