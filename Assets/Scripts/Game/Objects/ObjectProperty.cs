@@ -18,10 +18,10 @@ public class ObjectProperty : MonoBehaviour
 
     public void OnCollect()
     {
-        objectController.collect();
         GameObject objectListUI = GameObject.Find("ObjectList");
         textObject.SetActive(false);
         transform.gameObject.SetActive(false);
+        objectController.collect();
         gm.timeInSeconds -= secondsToRemove;
     }
 }

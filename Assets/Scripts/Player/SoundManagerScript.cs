@@ -2,39 +2,41 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class SoundManagerScript : MonoBehaviour
 {
     public static AudioClip jumpSound, walkingSound, collectingSound;
-    static AudioSource audioSrc;
+    public static AudioSource audioSrc;
     // Start is called before the first frame update
     void Start()
     {
         jumpSound = Resources.Load<AudioClip>("jump");
         walkingSound = Resources.Load<AudioClip>("walking");
-        collectingSound = Resources.Load<AudioClip>("Collecting");
+        collectingSound = Resources.Load<AudioClip>("collecting");
 
         audioSrc = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void PlaySound(Sounds sound)
     {
-        
-    }
-
-    public static void PlaySound(string clip)
-    {
-        switch (clip)
+        switch (sound)
         {
-            case "jump":
+            case Sounds.JUMP:
                 audioSrc.PlayOneShot(jumpSound);
                 break;
-            case "walking":
+            case Sounds.WALKING:
                 audioSrc.PlayOneShot(walkingSound);
                 break;
-            case "collecting":
+            case Sounds.COLLECTING:
                 audioSrc.PlayOneShot(collectingSound);
                 break;
         }
     }
+}
+
+public enum Sounds
+{
+    JUMP = 0,
+    WALKING = 1,
+    COLLECTING = 2
 }
