@@ -48,6 +48,7 @@ public class ObjectController : MonoBehaviour
                 layoutElement.preferredHeight = 32;
                 _textObject.transform.localScale = Vector3.one;
                 collectables.Add(randGameObject);
+                SoundManagerScript.PlaySound("Collecting");
                 collectableIndex++;
             }
         }
