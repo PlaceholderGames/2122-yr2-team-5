@@ -14,6 +14,6 @@ public class PausedUI : UIManager
     public void resume()
     {
         gm.setPaused(false);
-        hideScreen(this.gameObject);
+        hideScreen(this.transform);
     }
 }
