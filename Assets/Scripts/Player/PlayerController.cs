@@ -50,6 +50,11 @@ public class PlayerController : MonoBehaviour
                 velocity.y = -2f;
             }
 
+            if(!isGrounded && velocity.y >= -0.1 && velocity.y < 0.1)
+            {
+                SoundManagerScript.PlaySound(Sounds.JUMP);
+            }
+
             float x = Input.GetAxis("Horizontal");
             float z = Input.GetAxis("Vertical");
 

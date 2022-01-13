@@ -47,6 +47,7 @@ public class ObjectController : MonoBehaviour
                 layoutElement.minHeight = 32;
                 layoutElement.preferredHeight = 32;
                 _textObject.transform.localScale = Vector3.one;
+
                 collectables.Add(randGameObject);
                 collectableIndex++;
             }
@@ -84,6 +85,7 @@ public class ObjectController : MonoBehaviour
 
     public void collect()
     {
+        SoundManagerScript.PlaySound(Sounds.COLLECTING);
         objectsFound++;
     }
 }
