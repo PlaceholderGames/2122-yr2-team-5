@@ -21,7 +21,10 @@ public class ObjectController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(objectsToFind > GameObject.FindGameObjectsWithTag("FindMe").Length) { objectsToFind = GameObject.FindGameObjectsWithTag("FindMe").Length;  }
+
+        GameManager gm = GetComponent<GameManager>();
+
+        if (objectsToFind > GameObject.FindGameObjectsWithTag("FindMe").Length) { objectsToFind = GameObject.FindGameObjectsWithTag("FindMe").Length;  }
 
         collectables = new List<GameObject>(objectsToFind);
         GameObject[] collectablesInScene = GameObject.FindGameObjectsWithTag("FindMe");
@@ -36,7 +39,9 @@ public class ObjectController : MonoBehaviour
 
                 string collectableName = randGameObject.name + "_" + randGameObject.transform.parent.name + "_text";
 
-                GameObject _textObject = Instantiate(textObject, GameObject.Find("ObjectList").transform);
+                Transform objectList = gm.UI.transform.Find("Game").Find("Objects").Find("Content").Find("ObjectList").transform;
+
+                GameObject _textObject = Instantiate(textObject, objectList);
                 _textObject.name = collectableName;
                 randGameObject.GetComponent<ObjectProperty>().textObject = _textObject;
                 TMPro.TextMeshProUGUI textComponent = _textObject.GetComponent<TMPro.TextMeshProUGUI>();
@@ -53,7 +58,7 @@ public class ObjectController : MonoBehaviour
             }
         }
 
-        addHighlighting(GameObject.Find("GameManager").GetComponent<GameManager>().highlightProfile);
+        addHighlighting(GetComponent<GameManager>().highlightProfile);
     }
 
     public void addHighlighting(HighlightPlus.HighlightProfile profile)

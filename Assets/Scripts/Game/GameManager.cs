@@ -53,12 +53,17 @@ public class GameManager : UIManager
     [HideInInspector]
     public int starScore = 0;
 
-    [SerializeField]
-    private int stars =  0;
+    [HideInInspector]
+    public int stars =  0;
+
+    [HideInInspector]
+    public static GameManager instance;
 
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
+
         GameUI = UI.transform.Find("Game").gameObject;
         TutorialUI = UI.transform.Find("Tutorial").gameObject;
         GameOverUI = UI.transform.Find("GameOver").gameObject;

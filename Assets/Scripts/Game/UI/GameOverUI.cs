@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverUI : LoadingUI
 {
     Transform UI;
     Transform LoadingScreen;
+    GameManager gm;
 
     private void Start()
     {
         UI = transform;
         LoadingScreen = transform.Find("LoadingScreen");
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
 
+    private void Update()
+    {
         showContinueButton();
     }
 
@@ -43,12 +49,12 @@ public class GameOverUI : LoadingUI
         int nextLevel = currentSceneIndex + 1;
 
         bool hasAnotherLevel = nextLevel <= SceneManager.sceneCountInBuildSettings - 1;
+        button.GetComponent<Button>().interactable = gm.stars > 0;
 
         button.gameObject.SetActive(hasAnotherLevel);
     }
     public void saveScore()
     {
-        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         string sceneName = SceneManager.GetActiveScene().name;
         string levelName = $"level.{sceneName}";
         bool hasScore = PlayerPrefs.HasKey(levelName + ".score");

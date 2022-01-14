@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PausedUI : UIManager
 {
-    GameManager gm;
 
-    void Start()
+    GameManager gm;
+    private void Start()
     {
-        gm = GameObject.Find("GameManager").GetComponent<GameManager>();    
+        gm = GameObject.Find("GameManager").GetComponent<GameManager>();        
     }
 
     public void resume()
