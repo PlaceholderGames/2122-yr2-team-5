@@ -2551,7 +2551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d451d8aa8592bc4ab9ee614959d4f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: New Scene
+  sceneName: Shop
 --- !u!1 &669077585
 GameObject:
   m_ObjectHideFlags: 0
@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d451d8aa8592bc4ab9ee614959d4f31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: map v2
+  sceneName: Tutorial
 --- !u!1 &1246336548
 GameObject:
   m_ObjectHideFlags: 0
