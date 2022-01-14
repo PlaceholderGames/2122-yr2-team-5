@@ -49,7 +49,12 @@ public class GameManager : UIManager
 
     [SerializeField]
     private float difficulty = 1.25f;
+
+    [HideInInspector]
     public int starScore = 0;
+
+    [SerializeField]
+    private int stars =  0;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +91,8 @@ public class GameManager : UIManager
     // Update is called once per frame
     void Update()
     {
+        stars = calculateStars();
+
 
         if(paused)
         {
@@ -220,11 +227,13 @@ public class GameManager : UIManager
         // Visual graph of star calculation
         // https://www.desmos.com/calculator/t8lq8kbzms
 
-        // c = ( O / ( timeInSeconds / 60 ))
-        float collectablePerMinute = objectController.objectsFound / (timeInSeconds / 60);
+        float f = objectController.objectsToFind;
+        float r = this.difficulty;
 
-        // y = (c/(f/f*r))/2
-        return (int)(collectablePerMinute / (objectController.objectsToFind * difficulty));
+        float c = (f / (timeInSeconds / 60));
+        float y = (c / (f / (f * r)));
+
+        return Mathf.FloorToInt(y);
     }
 
     void displayGameOver(bool collectedAll, float timeLeft)
