@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
 
     public Vector3 lastPosition;
+    private bool wasGrounded;
 
     public string currentRoom = "None";
 
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        wasGrounded = true;
     }
 
     // Update is called once per frame
@@ -50,7 +53,7 @@ public class PlayerController : MonoBehaviour
                 velocity.y = -2f;
             }
 
-            if(!isGrounded && velocity.y >= -0.1 && velocity.y < 0.1)
+            if(!wasGrounded && isGrounded)
             {
                 SoundManagerScript.PlaySound(Sounds.JUMP);
             }
@@ -75,6 +78,8 @@ public class PlayerController : MonoBehaviour
 
             velocity.y += gravity * Time.deltaTime;
             controller.Move(velocity * Time.deltaTime);
+
+            wasGrounded = isGrounded;
         }
     }
 }
